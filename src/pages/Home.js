@@ -1,16 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import NavigationHeader from "../components/NavigationHeader";
+import classes from "./Home.module.scss";
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  const clickHandler = () => {
-    navigate("/profile");
-  };
-
   return (
-    <div>
-      <p>This is the homepage</p>
-      <button onClick={clickHandler}>View Profile</button>
+    <div className={classes.container}>
+      <NavigationHeader />
+      <h2>Homepage</h2>
     </div>
   );
 };
