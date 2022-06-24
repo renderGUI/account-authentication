@@ -1,0 +1,29 @@
+@use "../config";
+
+.container {
+  @include config.centeredContent;
+
+  nav {
+    @include config.navigationBar;
+    justify-content: flex-start;
+  }
+}
+
+.homeButton {
+  @include config.navigationButton;
+}
+
+.profilePicture {
+  font-size: 5.25rem;
+  color: config.$heading;
+}
+
+.username {
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+.settingsButton {
+  @include config.button;
+
+}

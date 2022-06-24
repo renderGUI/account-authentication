@@ -54,3 +54,29 @@ $heading: #5f7470;
     background-color: darken($button-background, 5%);
   }
 }
+
+@mixin navigationBar {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@mixin navigationButton {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  color: darken($background, 15%);
+  font-size: 1.875rem;
+
+  &:hover {
+    color: darken($background, 20%);
+  }
+
+  &:active {
+    color: darken($background, 20%);
+  }
+}
