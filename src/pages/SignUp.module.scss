@@ -1,0 +1,22 @@
+@use "../config";
+
+.container {
+  @include config.centeredForm;
+
+  h2 {
+    color: config.$heading;
+    font-size: 2.25rem;
+  }
+}
+
+input {
+  @include config.inputField;
+}
+
+.signupButton {
+  @include config.button;
+}
+
+.toggleFormText {
+  @include config.toggleFormText;
+}
