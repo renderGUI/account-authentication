@@ -18,7 +18,7 @@ const Profile = () => {
   return (
     <div className={classes.container}>
       <nav>
-        <Link className={classes.homeButton} to="/">
+        <Link className={classes.backButton} to="/">
           <FontAwesomeIcon icon={faCircleArrowLeft} />
         </Link>
       </nav>

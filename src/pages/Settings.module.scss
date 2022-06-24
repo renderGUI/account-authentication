@@ -1,0 +1,44 @@
+@use "../config";
+
+.container {
+  @include config.centeredContent;
+
+  nav {
+    @include config.navigationBar;
+    justify-content: flex-start;
+  }
+
+  h2 {
+    color: config.$heading;
+    font-size: 2.25rem;
+  }
+}
+
+.backButton {
+  @include config.navigationButton;
+}
+
+input {
+  @include config.inputField;
+}
+
+.changePasswordButton {
+  @include config.button;
+}
+
+.logoutButton {
+  @include config.clickableText;
+  color: #dd7777;
+  text-decoration: underline;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

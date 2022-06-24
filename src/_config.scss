@@ -13,7 +13,7 @@ $heading: #5f7470;
   text-align: center;
 }
 
-@mixin toggleFormText {
+@mixin clickableText {
   border: none;
   background-color: transparent;
   color: $contrast;

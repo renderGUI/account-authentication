@@ -18,5 +18,5 @@ input {
 }
 
 .toggleFormText {
-  @include config.toggleFormText;
+  @include config.clickableText;
 }
