@@ -4,7 +4,7 @@ $button-background: #ddc077;
 $contrast: #889696;
 $heading: #5f7470;
 
-@mixin centeredForm {
+@mixin centeredContent {
   display: flex;
   height: 100vh;
   flex-direction: column;

@@ -1,7 +1,7 @@
 @use "../config";
 
 .container {
-  @include config.centeredForm;
+  @include config.centeredContent;
 
   h2 {
     color: config.$heading;
