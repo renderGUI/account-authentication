@@ -28,8 +28,6 @@ $heading: #5f7470;
 }
 
 @mixin inputField {
-  margin-top: 10px;
-  margin-bottom: 10px;
   font-size: 1.5rem;
   border: none;
 
@@ -52,6 +50,12 @@ $heading: #5f7470;
   &:hover {
     cursor: pointer;
     background-color: darken($button-background, 5%);
+  }
+
+  &:disabled {
+    color: rgba($button, 0.4);
+    background-color: rgba($button-background, 0.4);
+    cursor: not-allowed;
   }
 }
 

@@ -9,8 +9,20 @@
   }
 }
 
-input {
-  @include config.inputField;
+form {
+  div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    @include config.inputField;
+  }
+
+  .errorMessage {
+    font-size: 0.75rem;
+    color: #dd7777;
+  }
 }
 
 .signupButton {

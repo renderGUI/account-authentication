@@ -1,23 +1,46 @@
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import classes from "./Settings.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import PasswordRequirements from "../components/PasswordRequirements";
 
 const Settings = () => {
-  const enteredNewPasswordRef = useRef();
-  const { logout, changePassword, currentUser } = useAuth();
+  console.log("Settings component re-rendered.");
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const { logout, changePassword, currentUser } = useAuth();
+  const [enteredPassword, setEnteredPassword] = useState("");
+
+  const onPasswordChangeHandler = (e) => {
+    setEnteredPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (
+      enteredPassword.length >= 8 &&
+      enteredPassword.match(/[0-9]/g) &&
+      enteredPassword.match(/[A-Z]/g)
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [enteredPassword]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const enteredNewPassword = enteredNewPasswordRef.current.value;
 
     try {
-      await changePassword(currentUser, enteredNewPassword);
+      setError(false);
+      setIsDisabled(true);
+      await changePassword(currentUser, enteredPassword);
+      setEnteredPassword("");
+      navigate("/");
     } catch {
-      console.log("Failed to change password.");
+      setError(true);
     }
   };
 
@@ -37,23 +60,26 @@ const Settings = () => {
       <form onSubmit={submitHandler}>
         <div>
           <input
-            id="newPasswordInput"
             type="password"
-            ref={enteredNewPasswordRef}
+            onChange={onPasswordChangeHandler}
+            value={enteredPassword}
             placeholder="New Password"
           ></input>
         </div>
 
-        <div>
-          <input
-            id="newPasswordInput"
-            type="password"
-            ref={enteredNewPasswordRef}
-            placeholder="Re-enter Password"
-          ></input>
-        </div>
+        <PasswordRequirements enteredPassword={enteredPassword} />
 
-        <button className={classes.changePasswordButton} type="submit">
+        {error && (
+          <p className={classes.errorMessage}>
+            Could not change password. Please try again.
+          </p>
+        )}
+
+        <button
+          className={classes.changePasswordButton}
+          type="submit"
+          disabled={isDisabled}
+        >
           Confirm
         </button>
       </form>

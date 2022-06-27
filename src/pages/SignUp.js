@@ -1,29 +1,53 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import classes from "./SignUp.module.scss";
+import PasswordRequirements from "../components/PasswordRequirements";
 
 const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const enteredEmailRef = useRef();
-  const enteredNewPasswordRef = useRef();
+  console.log("SignUp component re-rendered.");
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { signup } = useAuth();
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+
+  const onEmailChangeHandler = (e) => {
+    setEnteredEmail(e.target.value);
+  };
+
+  const onPasswordChangeHandler = (e) => {
+    setEnteredPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (
+      enteredPassword.length >= 8 &&
+      enteredPassword.match(/[0-9]/g) &&
+      enteredPassword.match(/[A-Z]/g) &&
+      enteredEmail.length > 0
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [enteredEmail, enteredPassword]);
 
   const signupHandler = async (e) => {
     e.preventDefault();
 
-    const enteredEmail = enteredEmailRef.current.value;
-    const enteredNewPassword = enteredNewPasswordRef.current.value;
-
     try {
-      setIsLoading(true);
-      await signup(enteredEmail, enteredNewPassword);
+      setError(false);
+      setIsDisabled(true);
+      await signup(enteredEmail, enteredPassword);
+      setEnteredEmail("");
+      setEnteredPassword("");
       navigate("/");
     } catch {
-      console.log("Failed to sign up.");
+      setError(true);
     }
-    setIsLoading(false);
+    setIsDisabled(false);
   };
 
   const changeToLogInHandler = () => {
@@ -36,9 +60,9 @@ const SignUp = () => {
       <form onSubmit={signupHandler}>
         <div>
           <input
-            id="emailInput"
             type="email"
-            ref={enteredEmailRef}
+            onChange={onEmailChangeHandler}
+            value={enteredEmail}
             placeholder="Email Address"
           ></input>
         </div>
@@ -46,15 +70,24 @@ const SignUp = () => {
         <div>
           <input
             type="password"
-            ref={enteredNewPasswordRef}
+            onChange={onPasswordChangeHandler}
+            value={enteredPassword}
             placeholder="New Password"
           ></input>
         </div>
 
+        <PasswordRequirements enteredPassword={enteredPassword} />
+
+        {error && (
+          <p className={classes.errorMessage}>
+            Could not sign up. Please try again.
+          </p>
+        )}
+
         <button
           className={classes.signupButton}
           type="submit"
-          disabled={isLoading}
+          disabled={isDisabled}
         >
           Sign Up
         </button>

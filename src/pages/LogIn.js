@@ -5,6 +5,7 @@ import classes from "./LogIn.module.scss";
 
 const LogIn = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const enteredEmailRef = useRef();
   const enteredPasswordRef = useRef();
   const navigate = useNavigate();
@@ -17,11 +18,12 @@ const LogIn = () => {
     const enteredPassword = enteredPasswordRef.current.value;
 
     try {
+      setError(false);
       setIsLoading(true);
       await login(enteredEmail, enteredPassword);
       navigate("/");
     } catch {
-      console.log("Failed to log in.");
+      setError(true);
     }
     setIsLoading(false);
   };
@@ -51,12 +53,23 @@ const LogIn = () => {
           ></input>
         </div>
 
-        <button className={classes.loginButton} type="submit" disabled={isLoading}>
+        {error && <p className={classes.errorMessage}>Invalid credentials.  Please try again.</p>}
+
+        <button
+          className={classes.loginButton}
+          type="submit"
+          disabled={isLoading}
+        >
           Log In
         </button>
       </form>
 
-      <button className={classes.toggleFormText} onClick={changeToSignUpModeHandler}>Create a new account</button>
+      <button
+        className={classes.toggleFormText}
+        onClick={changeToSignUpModeHandler}
+      >
+        Create a new account
+      </button>
     </div>
   );
 };
