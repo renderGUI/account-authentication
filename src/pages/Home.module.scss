@@ -8,3 +8,26 @@
     font-size: 2.25rem;
   }
 }
+
+.chatContainer {
+  background-color: darken(config.$background, 5%);
+  height: 75%;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 10px;
+}
+
+.chatBox {
+  form {
+    input {
+      @include config.inputField;
+      border-bottom-left-radius: 10px;
+    }
+
+    .sendButton {
+      @include config.button;
+      font-weight: bold;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

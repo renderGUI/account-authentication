@@ -3,6 +3,7 @@ $button: #ffffff;
 $button-background: #ddc077;
 $contrast: #889696;
 $heading: #5f7470;
+$important: #dd7777;
 
 @mixin centeredContent {
   display: flex;
@@ -45,7 +46,7 @@ $heading: #5f7470;
   color: $button;
   background-color: $button-background;
   font-size: 1.5rem;
-  padding: 2px 20px 2px 20px;
+  padding: 1px 20px 1px 20px;
 
   &:hover {
     cursor: pointer;
