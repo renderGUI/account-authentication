@@ -7,6 +7,8 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { ref, set, onValue, push } from "firebase/database";
+import { database } from "../firebase-config";
 
 const AuthContext = createContext();
 
@@ -16,6 +18,7 @@ export const useAuth = () => {
 
 export const AuthContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState();
+  const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const isLoggedIn = !!currentUser;
@@ -36,6 +39,29 @@ export const AuthContextProvider = (props) => {
     return updatePassword(user, newPassword);
   };
 
+  const postData = (userId, chatMessage, timeSent) => {
+    const db = database;
+    const pathRef = ref(db, `users/${userId}/messages`);
+    const newChatMessage = push(pathRef);
+
+    set(newChatMessage, {
+      chatMessage: chatMessage,
+      timeSent: timeSent,
+      id: newChatMessage.key,
+    });
+  };
+
+  const readData = (userId) => {
+    const db = database;
+    const pathRef = ref(db, `users/${userId}/messages`);
+
+    onValue(pathRef, (snapshot) => {
+      const data = snapshot.val();
+      const convertedData = Object.values(data); // Converts object of objects to array of objects.
+      setMessages(convertedData);
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -52,6 +78,9 @@ export const AuthContextProvider = (props) => {
     login,
     changePassword,
     logout,
+    postData,
+    readData,
+    messages,
   };
 
   return (
