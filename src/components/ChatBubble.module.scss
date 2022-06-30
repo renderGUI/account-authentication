@@ -1,0 +1,35 @@
+@use "../config";
+
+.sentContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.receivedContainer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sentBubble {
+  background-color: config.$heading;
+  color: #ffffff;
+  text-align: center;
+  max-width: 75%;
+  padding: 5px 10px 5px 10px;
+  border-radius: 25px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.receivedBubble {
+  background-color: config.$contrast;
+  color: #ffffff;
+  text-align: center;
+  max-width: 75%;
+  padding: 5px 10px 5px 10px;
+  border-radius: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

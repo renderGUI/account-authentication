@@ -2,8 +2,7 @@ import NavigationHeader from "../components/NavigationHeader";
 import classes from "./Home.module.scss";
 import { useRef, useEffect } from "react";
 import { useAuth } from "../contexts/auth-context";
-import SentChatBubble from "../components/SentChatBubble";
-import ReceivedChatBubble from "../components/ReceivedChatBubble";
+import ChatBubble from "../components/ChatBubble";
 
 const Home = () => {
   const { currentUser, postData, readData, messages } = useAuth();
@@ -29,14 +28,6 @@ const Home = () => {
     chatMessageRef.current.focus();
   };
 
-  const sentChatMessages = messages.filter((message) => {
-    return message.sentBy == currentUser.uid;
-  });
-
-  const receivedChatMessages = messages.filter((message) => {
-    return message.sentBy !== currentUser.uid;
-  });
-
   return (
     <div className={classes.container}>
       <NavigationHeader />
@@ -46,20 +37,12 @@ const Home = () => {
             <p className={classes.emptyLogText}>No chats yet. Say something!</p>
           )}
           {messages.length > 0 &&
-            sentChatMessages.map((message) => {
+            messages.map((message) => {
               return (
-                <SentChatBubble
+                <ChatBubble
                   key={message.id}
                   chatMessage={message.chatMessage}
-                />
-              );
-            })}
-          {messages.length > 0 &&
-            receivedChatMessages.map((message) => {
-              return (
-                <ReceivedChatBubble
-                  key={message.id}
-                  chatMessage={message.chatMessage}
+                  sentBy={message.sentBy}
                 />
               );
             })}
