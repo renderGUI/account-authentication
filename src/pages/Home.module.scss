@@ -10,11 +10,19 @@
 }
 
 .chatContainer {
-  background-color: darken(config.$background, 5%);
-  height: 75%;
   display: flex;
-  align-items: flex-end;
-  border-radius: 10px;
+  flex-direction: column;
+  height: 75%;
+}
+
+.chatLog {
+  background-color: darken(config.$background, 5%);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .chatBox {

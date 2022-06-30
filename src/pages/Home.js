@@ -2,7 +2,8 @@ import NavigationHeader from "../components/NavigationHeader";
 import classes from "./Home.module.scss";
 import { useRef, useEffect } from "react";
 import { useAuth } from "../contexts/auth-context";
-import ChatBubble from "../components/ChatBubble";
+import SentChatBubble from "../components/SentChatBubble";
+import ReceivedChatBubble from "../components/ReceivedChatBubble";
 
 const Home = () => {
   const { currentUser, postData, readData, messages } = useAuth();
@@ -10,7 +11,7 @@ const Home = () => {
   const d = new Date();
 
   useEffect(() => {
-    readData(currentUser.uid);
+    readData();
   }, []);
 
   console.log(messages);
@@ -25,22 +26,45 @@ const Home = () => {
     postData(user, chatMessage, currentTime);
 
     chatMessageRef.current.value = "";
+    chatMessageRef.current.focus();
   };
+
+  const sentChatMessages = messages.filter((message) => {
+    return message.sentBy == currentUser.uid;
+  });
+
+  const receivedChatMessages = messages.filter((message) => {
+    return message.sentBy !== currentUser.uid;
+  });
 
   return (
     <div className={classes.container}>
       <NavigationHeader />
       <div className={classes.chatContainer}>
+        <div className={classes.chatLog}>
+          {messages.length === 0 && (
+            <p className={classes.emptyLogText}>No chats yet. Say something!</p>
+          )}
+          {messages.length > 0 &&
+            sentChatMessages.map((message) => {
+              return (
+                <SentChatBubble
+                  key={message.id}
+                  chatMessage={message.chatMessage}
+                />
+              );
+            })}
+          {messages.length > 0 &&
+            receivedChatMessages.map((message) => {
+              return (
+                <ReceivedChatBubble
+                  key={message.id}
+                  chatMessage={message.chatMessage}
+                />
+              );
+            })}
+        </div>
         <div className={classes.chatBox}>
-          {messages.map((message) => {
-            return (
-              <ChatBubble
-                key={message.id}
-                chatMessage={message.chatMessage}
-                timeSent={message.timeSent}
-              />
-            );
-          })}
           <form onSubmit={sendChatMessageHandler}>
             <input type="text" ref={chatMessageRef}></input>
             <button className={classes.sendButton} type="submit">

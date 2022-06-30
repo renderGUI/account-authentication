@@ -41,19 +41,20 @@ export const AuthContextProvider = (props) => {
 
   const postData = (userId, chatMessage, timeSent) => {
     const db = database;
-    const pathRef = ref(db, `users/${userId}/messages`);
+    const pathRef = ref(db, `chatlog/`);
     const newChatMessage = push(pathRef);
 
     set(newChatMessage, {
       chatMessage: chatMessage,
+      sentBy: userId,
       timeSent: timeSent,
       id: newChatMessage.key,
     });
   };
 
-  const readData = (userId) => {
+  const readData = () => {
     const db = database;
-    const pathRef = ref(db, `users/${userId}/messages`);
+    const pathRef = ref(db, `chatlog/`);
 
     onValue(pathRef, (snapshot) => {
       const data = snapshot.val();
