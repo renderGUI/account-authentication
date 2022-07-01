@@ -16,6 +16,16 @@
   max-height: 75%;
 }
 
+.loadingText,
+.emptyLogText {
+  display: flex;
+  text-align: center;
+  height: 90%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .chatLog {
   background-color: darken(config.$background, 5%);
   border-top-left-radius: 10px;

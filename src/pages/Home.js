@@ -42,7 +42,7 @@ const Home = () => {
       <NavigationHeader />
       <div className={classes.chatContainer}>
         <div className={classes.chatLog}>
-          {loadingMessages && <p>Loading...</p>}
+          {loadingMessages && <p className={classes.loadingText}>Loading...</p>}
           {!loadingMessages && messages.length === 0 && (
             <p className={classes.emptyLogText}>No chats yet. Say something!</p>
           )}

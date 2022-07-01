@@ -20,7 +20,7 @@ export const AuthContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState();
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingMessages, setLoadingMessages] = useState(false);
+  const [loadingMessages, setLoadingMessages] = useState(true);
 
   const isLoggedIn = !!currentUser;
 
@@ -60,9 +60,13 @@ export const AuthContextProvider = (props) => {
 
     onValue(pathRef, (snapshot) => {
       const data = snapshot.val();
-      const convertedData = Object.values(data); // Converts object of objects to array of objects.
-      setMessages(convertedData);
-      setLoadingMessages(false);
+      if (data == null) {
+        setLoadingMessages(false);
+      } else {
+        const convertedData = Object.values(data); // Converts object of objects to array of objects.
+        setMessages(convertedData);
+        setLoadingMessages(false);
+      }
     });
   };
 
