@@ -20,6 +20,7 @@ export const AuthContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState();
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingMessages, setLoadingMessages] = useState(false);
 
   const isLoggedIn = !!currentUser;
 
@@ -53,6 +54,7 @@ export const AuthContextProvider = (props) => {
   };
 
   const readData = () => {
+    setLoadingMessages(true);
     const db = database;
     const pathRef = ref(db, `chatlog/`);
 
@@ -60,6 +62,7 @@ export const AuthContextProvider = (props) => {
       const data = snapshot.val();
       const convertedData = Object.values(data); // Converts object of objects to array of objects.
       setMessages(convertedData);
+      setLoadingMessages(false);
     });
   };
 
@@ -82,6 +85,7 @@ export const AuthContextProvider = (props) => {
     postData,
     readData,
     messages,
+    loadingMessages,
   };
 
   return (
