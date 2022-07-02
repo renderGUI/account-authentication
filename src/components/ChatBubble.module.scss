@@ -2,38 +2,57 @@
 
 .sentContainer {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  // justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .receivedContainer {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  // justify-content: flex-start;
+  align-items: flex-end;
+}
+
+@mixin chatBubble {
+  color: #ffffff;
+  text-align: left;
+  max-width: 250px;
+  padding: 6px 12px 6px 12px;
+  border-radius: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .sentBubble {
+  @include chatBubble;
   background-color: config.$heading;
-  color: #ffffff;
-  text-align: left;
-  max-width: 250px;
-  padding: 6px 12px 6px 12px;
-  border-radius: 25px;
   margin-right: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  word-wrap: break-word;
-  overflow: hidden;
+
+  &:hover {
+    background-color: darken(config.$heading, 5%);
+  }
 }
 
 .receivedBubble {
+  @include chatBubble;
   background-color: config.$contrast;
-  color: #ffffff;
-  text-align: left;
-  max-width: 250px;
-  padding: 6px 12px 6px 12px;
-  border-radius: 25px;
   margin-left: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  word-wrap: break-word;
-  overflow: hidden;
+
+  &:hover {
+    background-color: darken(config.$contrast, 5%);
+  }
+}
+
+.timestamp {
+  margin-top: 1px;
+  margin-right: 10px;
+  font-size: 0.75rem;
+  user-select: none;
 }

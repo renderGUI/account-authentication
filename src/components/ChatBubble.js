@@ -1,8 +1,14 @@
 import classes from "./ChatBubble.module.scss";
 import { useAuth } from "../contexts/auth-context";
+import { useState } from "react";
 
 const ChatBubble = (props) => {
   const { currentUser } = useAuth();
+  const [showTimestamp, setShowTimestamp] = useState(false);
+
+  const toggleTimestampHandler = () => {
+    setShowTimestamp(!showTimestamp);
+  };
 
   return (
     <div
@@ -13,6 +19,7 @@ const ChatBubble = (props) => {
       }
     >
       <p
+        onClick={toggleTimestampHandler}
         className={
           props.sentBy === currentUser.uid
             ? classes.sentBubble
@@ -21,6 +28,7 @@ const ChatBubble = (props) => {
       >
         {props.chatMessage}
       </p>
+      {showTimestamp && <p className={classes.timestamp}>{props.timeSent}</p>}
     </div>
   );
 };

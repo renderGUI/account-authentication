@@ -24,14 +24,17 @@ const Home = () => {
 
     let chatMessage = chatMessageRef.current.value;
     const user = currentUser.uid;
+    const currentDate = d.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
     const currentTime = d.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     });
-    const currentDate = d.toLocaleDateString();
-    const timeAndDate = `${currentTime}, ${currentDate}`;
+    const dateAndTime = `${currentDate}, ${currentTime}`;
 
-    postData(user, chatMessage, timeAndDate);
+    postData(user, chatMessage, dateAndTime);
 
     chatMessageRef.current.value = "";
     chatMessageRef.current.focus();
@@ -53,6 +56,7 @@ const Home = () => {
                   key={message.id}
                   chatMessage={message.chatMessage}
                   sentBy={message.sentBy}
+                  timeSent={message.timeSent}
                 />
               );
             })}
