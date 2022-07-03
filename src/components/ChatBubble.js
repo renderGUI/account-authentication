@@ -28,7 +28,17 @@ const ChatBubble = (props) => {
       >
         {props.chatMessage}
       </p>
-      {showTimestamp && <p className={classes.timestamp}>{props.timeSent}</p>}
+      {showTimestamp && (
+        <p
+          className={
+            props.sentBy === currentUser.uid
+              ? classes.sentTimestamp
+              : classes.receivedTimestamp
+          }
+        >
+          {props.timeSent}
+        </p>
+      )}
     </div>
   );
 };

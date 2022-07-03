@@ -22,22 +22,26 @@ const Home = () => {
   const sendChatMessageHandler = (e) => {
     e.preventDefault();
 
-    let chatMessage = chatMessageRef.current.value;
-    const user = currentUser.uid;
-    const currentDate = d.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
-    const currentTime = d.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const dateAndTime = `${currentDate}, ${currentTime}`;
+    if (chatMessageRef.current.value.trim().length === 0) {
+      return;
+    } else {
+      let chatMessage = chatMessageRef.current.value;
+      const user = currentUser.uid;
+      const currentDate = d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+      const currentTime = d.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const dateAndTime = `${currentDate}, ${currentTime}`;
 
-    postData(user, chatMessage, dateAndTime);
+      postData(user, chatMessage, dateAndTime);
 
-    chatMessageRef.current.value = "";
-    chatMessageRef.current.focus();
+      chatMessageRef.current.value = "";
+      chatMessageRef.current.focus();
+    }
   };
 
   return (
