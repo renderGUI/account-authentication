@@ -14,16 +14,23 @@
 }
 
 .profilePicture {
-  font-size: 5.25rem;
-  color: config.$heading;
+  max-width: 20%;
+  height: auto;
+  border-radius: 50%;
 }
 
 .username {
   font-size: 1.875rem;
   font-weight: 600;
+  color: config.$button;
 }
 
 .settingsButton {
   @include config.button;
+}
 
+@media screen and (min-width: 1000px) {
+  .profilePicture {
+    max-width: 8%;
+  }
 }

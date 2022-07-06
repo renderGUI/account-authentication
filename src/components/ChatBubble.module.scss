@@ -3,14 +3,12 @@
 .sentContainer {
   display: flex;
   flex-direction: column;
-  // justify-content: flex-end;
   align-items: flex-end;
 }
 
 .receivedContainer {
   display: flex;
   flex-direction: column;
-  // justify-content: flex-start;
   align-items: flex-start;
 }
 
@@ -55,6 +53,7 @@
   margin-right: 10px;
   font-size: 0.75rem;
   user-select: none;
+  font-style: italic;
 }
 
 .receivedTimestamp {
@@ -62,4 +61,5 @@
   margin-left: 10px;
   font-size: 0.75rem;
   user-select: none;
+  font-style: italic;
 }

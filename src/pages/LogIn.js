@@ -35,7 +35,7 @@ const LogIn = () => {
   return (
     <div className={classes.container}>
       <h1>GUIchat</h1>
-      <form onSubmit={loginHandler}>
+      <form className={classes.loginForm} onSubmit={loginHandler}>
         <div>
           <input
             id="emailInput"

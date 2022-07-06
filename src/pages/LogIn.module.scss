@@ -4,12 +4,12 @@
   @include config.centeredContent;
 
   h1 {
-    color: config.$heading;
+    color: config.$button;
     font-size: 3rem;
   }
 }
 
-form {
+.loginForm {
   div {
     margin-top: 10px;
     margin-bottom: 10px;

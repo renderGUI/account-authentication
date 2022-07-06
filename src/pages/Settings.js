@@ -57,7 +57,7 @@ const Settings = () => {
         </Link>
       </nav>
       <h2>Change Password</h2>
-      <form onSubmit={submitHandler}>
+      <form className={classes.changePasswordForm} onSubmit={submitHandler}>
         <div>
           <input
             type="password"

@@ -9,12 +9,12 @@
   }
 
   h2 {
-    color: config.$heading;
+    color: config.$button;
     font-size: 2.25rem;
   }
 }
 
-form {
+.changePasswordForm {
   div {
     margin-top: 10px;
     margin-bottom: 10px;

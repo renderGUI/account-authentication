@@ -1,14 +1,9 @@
-$background: #e0e2db;
+$background: #1b1321;
 $button: #ffffff;
-$button-background: #ddc077;
-$contrast: #889696;
-$heading: #5f7470;
+$button-background: #ffa500;
+$contrast: #747474;
+$heading: #4f3b63;
 $important: #dd7777;
-//F15025
-// ffffff
-// E6E8E6
-// CED0CE
-// 191919
 
 @mixin centeredContent {
   display: flex;
@@ -22,7 +17,7 @@ $important: #dd7777;
 @mixin clickableText {
   border: none;
   background-color: transparent;
-  color: $contrast;
+  color: $important;
   font-size: 1.125rem;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -79,14 +74,14 @@ $important: #dd7777;
   padding-left: 20px;
   padding-right: 20px;
   text-decoration: none;
-  color: darken($background, 15%);
+  color: lighten($background, 20%);
   font-size: 1.875rem;
 
   &:hover {
-    color: darken($background, 20%);
+    color: lighten($background, 15%);
   }
 
   &:active {
-    color: darken($background, 20%);
+    color: lighten($background, 15%);
   }
 }

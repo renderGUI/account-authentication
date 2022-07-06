@@ -57,7 +57,7 @@ const SignUp = () => {
   return (
     <div className={classes.container}>
       <h2>Sign Up</h2>
-      <form onSubmit={signupHandler}>
+      <form className={classes.signupForm} onSubmit={signupHandler}>
         <div>
           <input
             type="email"
