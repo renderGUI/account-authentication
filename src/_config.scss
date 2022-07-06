@@ -1,5 +1,5 @@
 $background: #1b1321;
-$button: #ffffff;
+$text: #ffffff;
 $button-background: #ffa500;
 $contrast: #747474;
 $heading: #4f3b63;
@@ -43,7 +43,7 @@ $important: #dd7777;
 
 @mixin button {
   border: none;
-  color: $button;
+  color: $text;
   background-color: $button-background;
   font-size: 1.5rem;
   padding: 1px 20px 1px 20px;
@@ -54,7 +54,7 @@ $important: #dd7777;
   }
 
   &:disabled {
-    color: rgba($button, 0.4);
+    color: rgba($text, 0.4);
     background-color: rgba($button-background, 0.4);
     cursor: not-allowed;
   }

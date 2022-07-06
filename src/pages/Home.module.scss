@@ -2,11 +2,6 @@
 
 .container {
   @include config.centeredContent;
-
-  h2 {
-    color: config.$heading;
-    font-size: 2.25rem;
-  }
 }
 
 .chatContainer {
@@ -24,6 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: config.$text;
 }
 
 .chatLog {

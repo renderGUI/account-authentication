@@ -7,7 +7,6 @@ import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import PasswordRequirements from "../components/PasswordRequirements";
 
 const Settings = () => {
-  console.log("Settings component re-rendered.");
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -84,7 +83,7 @@ const Settings = () => {
         </button>
       </form>
 
-      <footer>
+      <footer className={classes.settingsFooter}>
         <button
           className={classes.logoutButton}
           type="button"

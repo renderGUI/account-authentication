@@ -13,7 +13,7 @@
 }
 
 @mixin chatBubble {
-  color: #ffffff;
+  color: config.$text;
   text-align: left;
   max-width: 250px;
   padding: 6px 12px 6px 12px;
@@ -48,18 +48,20 @@
   }
 }
 
-.sentTimestamp {
+@mixin timestamp {
   margin-top: 1px;
-  margin-right: 10px;
   font-size: 0.75rem;
   user-select: none;
   font-style: italic;
+  color: config.$text;
+}
+
+.sentTimestamp {
+  @include timestamp;
+  margin-right: 10px;
 }
 
 .receivedTimestamp {
-  margin-top: 1px;
+  @include timestamp;
   margin-left: 10px;
-  font-size: 0.75rem;
-  user-select: none;
-  font-style: italic;
 }

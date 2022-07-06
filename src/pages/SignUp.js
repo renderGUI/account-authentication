@@ -5,7 +5,6 @@ import classes from "./SignUp.module.scss";
 import PasswordRequirements from "../components/PasswordRequirements";
 
 const SignUp = () => {
-  console.log("SignUp component re-rendered.");
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
