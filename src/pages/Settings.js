@@ -43,6 +43,7 @@ const Settings = () => {
       setIsDisabled(true);
       await reauthenticate(currentUser, enteredCurrentPassword);
       await changePassword(currentUser, enteredNewPassword);
+      setEnteredCurrentPassword("");
       setEnteredNewPassword("");
       navigate("/");
     } catch {
@@ -52,7 +53,6 @@ const Settings = () => {
 
   const logoutHandler = () => {
     logout();
-    navigate("/");
   };
 
   return (

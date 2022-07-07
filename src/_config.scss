@@ -31,6 +31,7 @@ $important: #dd7777;
 @mixin inputField {
   font-size: 1.5rem;
   border: none;
+  border-radius: 5px;
 
   &:focus {
     outline: none;
@@ -43,6 +44,7 @@ $important: #dd7777;
 
 @mixin button {
   border: none;
+  border-radius: 5px;
   color: $text;
   background-color: $button-background;
   font-size: 1.5rem;

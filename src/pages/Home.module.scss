@@ -40,12 +40,14 @@
   form {
     input {
       @include config.inputField;
+      border-radius: 0;
       border-bottom-left-radius: 10px;
     }
-
+    
     .sendButton {
       @include config.button;
       font-weight: bold;
+      border-radius: 0;
       border-bottom-right-radius: 10px;
     }
   }
