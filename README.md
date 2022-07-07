@@ -13,6 +13,5 @@ Chat Room is a messaging application that lets you communicate with other people
 
 This application uses the following technologies:
 - React
-- Firebase (for database and authentication)
-- Netlify (for application deployment)
+- Firebase (for database, authentication, and deployment)
 - FontAwesome (for icons)
