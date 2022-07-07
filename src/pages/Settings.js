@@ -10,24 +10,30 @@ const Settings = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const { logout, changePassword, currentUser } = useAuth();
-  const [enteredPassword, setEnteredPassword] = useState("");
+  const { logout, reauthenticate, changePassword, currentUser } = useAuth();
+  const [enteredCurrentPassword, setEnteredCurrentPassword] = useState("");
+  const [enteredNewPassword, setEnteredNewPassword] = useState("");
 
-  const onPasswordChangeHandler = (e) => {
-    setEnteredPassword(e.target.value);
+  const onCurrentPasswordChangeHandler = (e) => {
+    setEnteredCurrentPassword(e.target.value);
+  };
+
+  const onNewPasswordChangeHandler = (e) => {
+    setEnteredNewPassword(e.target.value);
   };
 
   useEffect(() => {
     if (
-      enteredPassword.length >= 8 &&
-      enteredPassword.match(/[0-9]/g) &&
-      enteredPassword.match(/[A-Z]/g)
+      enteredNewPassword.length >= 8 &&
+      enteredNewPassword.match(/[0-9]/g) &&
+      enteredNewPassword.match(/[A-Z]/g) &&
+      enteredCurrentPassword.trim().length > 0
     ) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [enteredPassword]);
+  }, [enteredCurrentPassword, enteredNewPassword]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -35,8 +41,9 @@ const Settings = () => {
     try {
       setError(false);
       setIsDisabled(true);
-      await changePassword(currentUser, enteredPassword);
-      setEnteredPassword("");
+      await reauthenticate(currentUser, enteredCurrentPassword);
+      await changePassword(currentUser, enteredNewPassword);
+      setEnteredNewPassword("");
       navigate("/");
     } catch {
       setError(true);
@@ -60,13 +67,22 @@ const Settings = () => {
         <div>
           <input
             type="password"
-            onChange={onPasswordChangeHandler}
-            value={enteredPassword}
+            onChange={onCurrentPasswordChangeHandler}
+            value={enteredCurrentPassword}
+            placeholder="Current Password"
+          ></input>
+        </div>
+
+        <div>
+          <input
+            type="password"
+            onChange={onNewPasswordChangeHandler}
+            value={enteredNewPassword}
             placeholder="New Password"
           ></input>
         </div>
 
-        <PasswordRequirements enteredPassword={enteredPassword} />
+        <PasswordRequirements enteredPassword={enteredNewPassword} />
 
         {error && (
           <p className={classes.errorMessage}>

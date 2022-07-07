@@ -14,9 +14,9 @@
 }
 
 .profilePicture {
-  max-width: 20%;
-  height: auto;
   border-radius: 50%;
+  font-size: 4.5rem;
+  color: lighten(config.$background, 20%);
 }
 
 .username {
@@ -27,10 +27,4 @@
 
 .settingsButton {
   @include config.button;
-}
-
-@media screen and (min-width: 1000px) {
-  .profilePicture {
-    max-width: 8%;
-  }
 }

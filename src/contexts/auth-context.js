@@ -3,6 +3,8 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
   updatePassword,
   signOut,
 } from "firebase/auth";
@@ -34,6 +36,15 @@ export const AuthContextProvider = (props) => {
 
   const logout = () => {
     return signOut(auth);
+  };
+
+  const reauthenticate = (user, currentPassword) => {
+    const credential = EmailAuthProvider.credential(
+      currentUser.email,
+      currentPassword
+    );
+
+    return reauthenticateWithCredential(user, credential);
   };
 
   const changePassword = (user, newPassword) => {
@@ -84,6 +95,7 @@ export const AuthContextProvider = (props) => {
     currentUser,
     signup,
     login,
+    reauthenticate,
     changePassword,
     logout,
     postData,

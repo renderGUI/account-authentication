@@ -2,9 +2,10 @@ import { useAuth } from "../contexts/auth-context";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./Profile.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import defaultpfp from "../images/defaultprofilepicture.png";
-
+import {
+  faCircleArrowLeft,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const { currentUser } = useAuth();
@@ -21,11 +22,8 @@ const Profile = () => {
           <FontAwesomeIcon icon={faCircleArrowLeft} />
         </Link>
       </nav>
-      <img
-        className={classes.profilePicture}
-        src={defaultpfp}
-        alt="profile avatar"
-      />
+
+      <FontAwesomeIcon className={classes.profilePicture} icon={faUserCircle} />
       <p className={classes.username}>{currentUser.email}</p>
       <button
         className={classes.settingsButton}
