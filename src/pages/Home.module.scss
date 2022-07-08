@@ -50,10 +50,16 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 100%;
+    color: config.$text;
+    background-color: lighten(config.$background, 10%);
     -webkit-appearance: none;
 
     &:focus {
       outline: none;
+    }
+
+    &::placeholder {
+      color: lighten(config.$background, 50%);
     }
 
     &:focus::placeholder {
