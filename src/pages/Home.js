@@ -67,11 +67,13 @@ const Home = () => {
           <div ref={endOfLogRef}></div>
         </div>
         <div className={classes.chatBox}>
-          <form onSubmit={sendChatMessageHandler}>
-            <input type="text" ref={chatMessageRef}></input>
-            <button className={classes.sendButton} type="submit">
-              Send
-            </button>
+          <form className={classes.chatForm} onSubmit={sendChatMessageHandler}>
+            <input
+              className={classes.chatField}
+              type="text"
+              ref={chatMessageRef}
+              placeholder="Send a chat message..."
+            ></input>
           </form>
         </div>
       </div>
